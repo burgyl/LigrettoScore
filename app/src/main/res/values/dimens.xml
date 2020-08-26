@@ -1,3 +1,20 @@
 <resources>
+    <!-- screen  -->
+    <dimen name="screen_horizontal_margin">8dp</dimen>
+    <dimen name="screen_vertical_margin">8dp</dimen>
+    <!-- card view  -->
+    <dimen name="card_view_margin">16dp</dimen>
+    <dimen name="card_view_margin_inside">16dp</dimen>
+    <!-- round  -->
+    <dimen name="round_margin_left_top">8dp</dimen>
+    <dimen name="width_edit_cards">50dp</dimen>
+    <!-- other  -->
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_space">88dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <!-- text size  -->
+    <dimen name="h1">24sp</dimen>
+    <dimen name="h2">22sp</dimen>
+    <dimen name="h3">20sp</dimen>
+    <dimen name="h4">18sp</dimen>
 </resources>

@@ -31,7 +31,7 @@
     <string name="error_max_players">Vous pouvez avoir %1$d joueurs maximum</string>
     <string name="error_enter_all_fields">Vous devez remplir tous les champs</string>
     <string name="default_game_name">Partie %1$d</string>
-    <string name="dialog_infos">\"%1$s\" sont les cartes que vous avez jouées, celles au centre de la table.\n\n\"%2$s\" sont les cartes dans la pile Ligretto, la pile de 10 cartes (sans les 3 additionnelles).</string>
+    <string name="dialog_infos">\"%1$s\" sont les cartes dans la pile Ligretto, la pile de 10 cartes (sans les 3 additionnelles).\n\n\"%2$s\" sont les cartes que vous avez jouées, celles au centre de la table.</string>
     <string name="dialog_title_color_picker">Choisissez la couleur</string>
     <string name="about_header">A propos</string>
     <string name="see_github">Voir le projet sur GitHub</string>

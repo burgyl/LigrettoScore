@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,6 +57,17 @@ public class ScoreboardActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        FloatingActionButton fabNextRound = findViewById(R.id.fab_next_round);
+        fabNextRound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ScoreboardActivity.this, RoundActivity.class);
+                i.putExtra(getString(R.string.extra_game), game);
+                i.putExtra(getString(R.string.extra_players), players);
+                startActivityForResult(i, REQUEST_CODE_ROUND);
+            }
+        });
+
         MyDatabase myDatabase = MyDatabase.getInstance(getApplicationContext());
         gameDao = myDatabase.getGameDao();
         playerDao = myDatabase.getPlayerDao();
@@ -87,22 +101,10 @@ public class ScoreboardActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_scoreboard, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                return true;
-            case R.id.action_next:
-                Intent i = new Intent(ScoreboardActivity.this, RoundActivity.class);
-                i.putExtra(getString(R.string.extra_game), game);
-                i.putExtra(getString(R.string.extra_players), players);
-                startActivityForResult(i, REQUEST_CODE_ROUND);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

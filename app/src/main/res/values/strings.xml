@@ -46,7 +46,7 @@
     <string name="dialog_delete_game">Do you really want to delete \"%1$s\" ?</string>
     <string name="dialog_title_player_won">%1$s has won !</string>
     <string name="dialog_title_infos">Infos</string>
-    <string name="dialog_infos">\"%1$s\" are the cards that you have played, those in the center of the table.\n\n\"%2$s\" are the cards that are in the Ligretto stack, the stack of 10 cards (without the 3 additionnal).</string>
+    <string name="dialog_infos">\"%1$s\" are the cards that are in the Ligretto stack, the stack of 10 cards (without the 3 additionnal).\n\n\"%2$s\" are the cards that you have played, those in the center of the table.</string>
     <string name="dialog_title_quit_round">Quit</string>
     <string name="dialog_quit_round">Are you sure you want to quit this screen ? All your changes will be lost.</string>
     <string name="dialog_title_quit_game_params">Quit</string>

@@ -114,7 +114,7 @@ public class RoundActivity extends AppCompatActivity {
     private void showInfos() {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.dialog_title_infos))
-                .setMessage(getString(R.string.dialog_infos, getString(R.string.cards_center), getString(R.string.cards_ligretto)))
+                .setMessage(getString(R.string.dialog_infos, getString(R.string.cards_ligretto), getString(R.string.cards_center)))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

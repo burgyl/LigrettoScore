@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/display_header">
+
+        <ListPreference
+            app:defaultValue="MODE_NIGHT_FOLLOW_SYSTEM"
+            app:dialogTitle="@string/theme_dialog_title"
+            app:entries="@array/settings_theme_10_titles"
+            app:entryValues="@array/settings_theme_10_values"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="@string/settings_key_theme_10"
+            app:title="@string/theme_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="MODE_NIGHT_AUTO_BATTERY"
+            app:dialogTitle="@string/theme_dialog_title"
+            app:entries="@array/settings_theme_9_titles"
+            app:entryValues="@array/settings_theme_9_values"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="@string/settings_key_theme_9"
+            app:title="@string/theme_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

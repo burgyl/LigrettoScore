@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="settings_theme_10_titles">
+        <item>Thème par défaut du système</item>
+        <item>Clair</item>
+        <item>Sombre</item>
+    </string-array>
+
+    <string-array name="settings_theme_9_titles">
+        <item>Économie de batterie</item>
+        <item>Clair</item>
+        <item>Sombre</item>
+    </string-array>
+</resources>

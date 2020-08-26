@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="ligretto_blue_orange">#d75e41</color>
+    <color name="ligretto_blue_cyan">#66bfe9</color>
+    <color name="ligretto_blue_dark_grey">#646b71</color>
+    <color name="ligretto_blue_yellow">#e1b435</color>
+    <color name="ligretto_green_lime">#a3b44a</color>
+    <color name="ligretto_green_brown">#775539</color>
+    <color name="ligretto_green_purple">#7a4595</color>
+    <color name="ligretto_green_pink">#de6598</color>
+    <color name="ligretto_red_pink">#da9aa8</color>
+    <color name="ligretto_red_black">#29282d</color>
+    <color name="ligretto_red_red">#dd4a50</color>
+    <color name="ligretto_red_blue">#2a588a</color>
+</resources>

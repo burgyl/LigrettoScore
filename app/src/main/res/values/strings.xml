@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name" translatable="false">Ligretto Score</string>
+    <string name="activity_settings">Settings</string>
+    <string name="activity_game_params">Game parameters</string>
+    <string name="activity_scoreboard">Scoreboard - %1$s</string>
+    <string name="activity_round">New round - %1$s</string>
+
+    <!-- Settings Titles -->
+    <string name="display_header">Display</string>
+
+    <!-- Settings keys -->
+    <string name="settings_key_theme_9" translatable="false">theme_9</string>
+    <string name="settings_key_theme_10" translatable="false">theme_10</string>
+
+    <!-- Extras -->
+    <string name="extra_game" translatable="false">GAME</string>
+    <string name="extra_players" translatable="false">PLAYERS</string>
+
+    <!-- Display Settings -->
+    <string name="theme_title">Theme</string>
+    <string name="theme_dialog_title">Choose theme</string>
+
+    <!-- Menus -->
+    <string name="infos">Infos</string>
+    <string name="done">Done</string>
+    <string name="next_round">Next round</string>
+
+    <!-- Main -->
+    <string name="nb_players">%1$d players</string>
+    <string name="game_name">Game name</string>
+    <string name="player_name">Player name</string>
+
+    <!-- Dialog -->
+    <string name="dialog_title_delete_game">Delete a game</string>
+    <string name="dialog_delete_game">Do you really want to delete \"%1$s\" ?</string>
+    <string name="dialog_title_player_won">%1$s has won !</string>
+    <string name="dialog_title_infos">Infos</string>
+    <string name="dialog_infos">\"%1$s\" are the cards that you have played, those in the center of the table.\n\n\"%2$s\" are the cards that are in the Ligretto stack, the stack of 10 cards (without the 3 additionnal).</string>
+    <string name="dialog_title_quit_round">Quit</string>
+    <string name="dialog_quit_round">Are you sure you want to quit this screen ? All your changes will be lost.</string>
+    <string name="dialog_title_quit_game_params">Quit</string>
+    <string name="dialog_quit_game_params">Are you sure you want to quit this screen ? All your changes will be lost.</string>
+    <string name="dialog_title_color_picker">Choose the color</string>
+
+
+    <!-- Game params -->
+    <string name="add_player_dialog_title">Add a player</string>
+    <string name="title_players">Players :</string>
+    <string name="title_game">Game :</string>
+
+    <!-- Round -->
+    <string name="cards_center">Cards in the center</string>
+    <string name="cards_ligretto">Cards in the Ligretto</string>
+
+    <!-- Errors -->
+    <string name="error_game_name">You have to set a game name</string>
+    <string name="error_not_enough_players">You need to be at least two players to start a game</string>
+    <string name="error_max_players">You can have maximum %1$d players</string>
+    <string name="error_enter_all_fields">You have to fill all the fields</string>
+
+    <!-- Defaults -->
+    <string name="default_game_name">Game %1$d</string>
+</resources>

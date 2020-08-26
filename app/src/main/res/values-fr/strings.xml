@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_settings">Paramètres</string>
+    <string name="activity_game_params">Paramètres de jeu</string>
+    <string name="activity_scoreboard">Tableau de scores - %1$s</string>
+    <string name="activity_round">Nouvelle manche - %1$s</string>
+    <string name="display_header">Affichage</string>
+    <string name="theme_title">Thème</string>
+    <string name="theme_dialog_title">Choisissez un thème</string>
+    <string name="infos">Infos</string>
+    <string name="done">Terminé</string>
+    <string name="next_round">Nouvelle manche</string>
+    <string name="nb_players">%1$d joueurs</string>
+    <string name="game_name">Nom de la partie</string>
+    <string name="player_name">Nom du joueur</string>
+    <string name="dialog_title_delete_game">Supprimer une partie</string>
+    <string name="dialog_delete_game">Voulez-vous vraiment supprimer \"%1$s\" ?</string>
+    <string name="dialog_title_player_won">%1$s a gagné !</string>
+    <string name="dialog_title_infos">Infos</string>
+    <string name="dialog_title_quit_round">Quitter</string>
+    <string name="dialog_quit_round">Voulez-vous vraiment quitter cet écran ? Tous vos changements seront perdus.</string>
+    <string name="dialog_quit_game_params">Voulez-vous vraiment quitter cet écran ? Tous vos changements seront perdus.</string>
+    <string name="dialog_title_quit_game_params">Quitter</string>
+    <string name="add_player_dialog_title">Ajouter un joueur</string>
+    <string name="title_players">Joueurs :</string>
+    <string name="title_game">Partie :</string>
+    <string name="cards_center">Cartes au centre</string>
+    <string name="cards_ligretto">Cartes dans le Ligretto</string>
+    <string name="error_game_name">Vous devez définir un nom de partie</string>
+    <string name="error_not_enough_players">Vous avez besoin d\'être au moins deux joueurs pour commencer une partie</string>
+    <string name="error_max_players">Vous pouvez avoir %1$d joueurs maximum</string>
+    <string name="error_enter_all_fields">Vous devez remplir tous les champs</string>
+    <string name="default_game_name">Partie %1$d</string>
+    <string name="dialog_infos">\"%1$s\" sont les cartes que vous avez jouées, celles au centre de la table.\n\n\"%2$s\" sont les cartes dans la pile Ligretto, la pile de 10 cartes (sans les 3 additionnelles).</string>
+    <string name="dialog_title_color_picker">Choisissez la couleur</string>
+</resources>

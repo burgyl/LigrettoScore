@@ -1,4 +1,5 @@
 <resources>
+    <!-- Display Preference -->
     <string-array name="settings_theme_10_titles">
         <item>Thème par défaut du système</item>
         <item>Clair</item>
@@ -9,5 +10,10 @@
         <item>Économie de batterie</item>
         <item>Clair</item>
         <item>Sombre</item>
+    </string-array>
+
+    <string-array name="settings_round_view_titles">
+        <item>Ensemble (toutes les entrées sur un même écran)</item>
+        <item>Individuellement (chaque entrée sur un écran différent)</item>
     </string-array>
 </resources>

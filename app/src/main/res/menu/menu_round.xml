@@ -11,9 +11,18 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/action_next"
+        android:icon="@drawable/ic_next"
+        android:orderInCategory="80"
+        android:title="@string/next_input"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_done"
         android:icon="@drawable/ic_done"
         android:orderInCategory="100"
         android:title="@string/done"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>

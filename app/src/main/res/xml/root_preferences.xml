@@ -26,6 +26,16 @@
             app:title="@string/theme_title"
             app:useSimpleSummaryProvider="true" />
 
+        <ListPreference
+            app:defaultValue="TOGETHER"
+            app:dialogTitle="@string/round_view_dialog_title"
+            app:entries="@array/settings_round_view_titles"
+            app:entryValues="@array/settings_round_view_values"
+            app:icon="@drawable/ic_cards"
+            app:key="@string/settings_key_round_view"
+            app:title="@string/round_view_title"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -46,8 +56,8 @@
         <Preference
             app:iconSpaceReserved="false"
             app:key="@string/settings_key_license_colorpicker"
-            app:title="@string/license_colorpicker_title"
-            app:summary="@string/license_colorpicker_description"/>
+            app:summary="@string/license_colorpicker_description"
+            app:title="@string/license_colorpicker_title" />
 
     </PreferenceCategory>
 

@@ -13,16 +13,20 @@
     <!-- Settings keys -->
     <string name="settings_key_theme_9" translatable="false">theme_9</string>
     <string name="settings_key_theme_10" translatable="false">theme_10</string>
+    <string name="settings_key_round_view" translatable="false">round_view</string>
     <string name="settings_key_see_github" translatable="false">github</string>
     <string name="settings_key_license_colorpicker" translatable="false">license_colorpicker</string>
 
     <!-- Extras -->
     <string name="extra_game" translatable="false">GAME</string>
     <string name="extra_players" translatable="false">PLAYERS</string>
+    <string name="extra_index_input" translatable="false">INPUT_INDEX</string>
 
     <!-- Display Settings -->
     <string name="theme_title">Theme</string>
     <string name="theme_dialog_title">Choose theme</string>
+    <string name="round_view_title">New round view</string>
+    <string name="round_view_dialog_title">Choose the round view</string>
 
     <!-- About Settings -->
     <string name="see_github_title">See the project on GitHub</string>
@@ -35,6 +39,7 @@
     <string name="infos">Infos</string>
     <string name="done">Done</string>
     <string name="next_round">Next round</string>
+    <string name="next_input">Next input</string>
 
     <!-- Main -->
     <string name="nb_players">%1$d players</string>
@@ -52,7 +57,6 @@
     <string name="dialog_title_quit_game_params">Quit</string>
     <string name="dialog_quit_game_params">Are you sure you want to quit this screen ? All your changes will be lost.</string>
     <string name="dialog_title_color_picker">Choose the color</string>
-
 
     <!-- Game params -->
     <string name="add_player_dialog_title">Add a player</string>

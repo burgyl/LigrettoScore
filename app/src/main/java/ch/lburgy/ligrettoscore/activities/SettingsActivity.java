@@ -27,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     private String keyTheme9;
     private String keyTheme10;
+    private String keyRoundView;
 
     private PrefManager prefManager;
     private SharedPreferences prefs;
@@ -35,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     protected void onCreate(Bundle savedInstanceState) {
         keyTheme9 = getResources().getString(R.string.settings_key_theme_9);
         keyTheme10 = getResources().getString(R.string.settings_key_theme_10);
+        keyRoundView = getResources().getString(R.string.settings_key_round_view);
 
         prefManager = new PrefManager(this);
 
@@ -76,6 +78,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         } else if (keyTheme10.equals(key)) {
             String themeString10 = sharedPreferences.getString(keyTheme10, "MODE_NIGHT_FOLLOW_SYSTEM");
             changeTheme(themeString10);
+        } else if (keyRoundView.equals(key)) {
+            String roundViewChoosen = sharedPreferences.getString(keyRoundView, "TOGETHER");
+            prefManager.setRoundViewTogether("TOGETHER".equals(roundViewChoosen));
         }
     }
 

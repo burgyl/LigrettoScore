@@ -12,6 +12,7 @@ public class PrefManager {
     private static final String PREF_NAME = "ch.lburgy.ligrettoscore";
 
     private static final String KEY_THEME = "theme";
+    private static final String KEY_ROUND_VIEW = "round_view";
 
     private final SharedPreferences pref;
     private final SharedPreferences.Editor editor;
@@ -32,5 +33,14 @@ public class PrefManager {
         } else {
             return pref.getInt(KEY_THEME, MODE_NIGHT_AUTO_BATTERY);
         }
+    }
+
+    public void setRoundViewTogether(boolean together) {
+        editor.putBoolean(KEY_ROUND_VIEW, together);
+        editor.commit();
+    }
+
+    public boolean isRoundViewTogether() {
+        return pref.getBoolean(KEY_ROUND_VIEW, true);
     }
 }

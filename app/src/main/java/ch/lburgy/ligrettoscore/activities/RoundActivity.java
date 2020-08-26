@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,10 +24,12 @@ import java.util.Collections;
 import ch.lburgy.ligrettoscore.R;
 import ch.lburgy.ligrettoscore.database.Game;
 import ch.lburgy.ligrettoscore.database.Player;
+import ch.lburgy.ligrettoscore.preferences.PrefManager;
 import ch.lburgy.ligrettoscore.ui.RVAdapterPlayersRound;
 
 public class RoundActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_ROUND = 0;
     private static final String KEY_SAVED_GAME = "game";
     private static final String KEY_SAVED_PLAYERS = "players";
     private static final int NIL = -1;
@@ -34,9 +37,9 @@ public class RoundActivity extends AppCompatActivity {
     private Game game;
     private ArrayList<Player> players;
     private int resultCode = RESULT_CANCELED;
-    private RecyclerView recyclerView;
     private int[] cardsCenter;
     private int[] cardsLigretto;
+    private int indexInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,11 @@ public class RoundActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        String extraIndexInput = getString(R.string.extra_index_input);
+        indexInput = getIntent().getIntExtra(extraIndexInput, -1);
+        PrefManager prefManager = new PrefManager(this);
+        if (!prefManager.isRoundViewTogether()) indexInput++;
 
         if (savedInstanceState == null) {
             String extraGame = getString(R.string.extra_game);
@@ -71,11 +79,11 @@ public class RoundActivity extends AppCompatActivity {
             cardsLigretto[i] = NIL;
         }
 
-        recyclerView = findViewById(R.id.recycler_view_players);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_players);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        RVAdapterPlayersRound rvAdapterPlayersRound = new RVAdapterPlayersRound(players, cardsCenter, cardsLigretto);
+        RVAdapterPlayersRound rvAdapterPlayersRound = new RVAdapterPlayersRound(getResources(), players, cardsLigretto, cardsCenter, indexInput);
         recyclerView.setAdapter(rvAdapterPlayersRound);
     }
 
@@ -85,27 +93,67 @@ public class RoundActivity extends AppCompatActivity {
         return true;
     }
 
-    private void done() {
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (indexInput == 0) {
+            menu.findItem(R.id.action_next).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_done).setVisible(true);
+        }
+        return true;
+    }
+
+    private boolean checkScoresEntered() {
         // check all scores have been added
         for (int i = 0; i < players.size(); i++)
-            if (cardsCenter[i] == NIL || cardsLigretto[i] == NIL) {
+            if (((indexInput == -1 || indexInput == 0) && cardsLigretto[i] == NIL) || ((indexInput == -1 || indexInput == 1) && cardsCenter[i] == NIL)) {
                 Toast.makeText(this, getString(R.string.error_enter_all_fields), Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
+        return true;
+    }
+
+    private boolean checkNoScoresEntered() {
+        // check none of the scores have been added
+        for (int i = 0; i < players.size(); i++)
+            if (((indexInput == -1 || indexInput == 0) && cardsLigretto[i] != NIL) || ((indexInput == -1 || indexInput == 1) && cardsCenter[i] != NIL)) {
+                return false;
+            }
+        return true;
+    }
+
+    private void done() {
         // add scores
+        System.out.println("indexInput: " + indexInput);
         for (int i = 0; i < players.size(); i++) {
-            players.get(i).scoreAdd(cardsCenter[i] - 2 * cardsLigretto[i]);
-        }
-        // update positions
-        Collections.sort(players, Player.PLAYER_COMPARATOR_SCORE);
-        int lastScore = Integer.MAX_VALUE;
-        int crtPos = 0;
-        for (Player player : players) {
-            if (player.getScore() < lastScore) {
-                lastScore = player.getScore();
-                crtPos++;
+            if (indexInput == -1 || indexInput == 0) {
+                System.out.println("ligretto " + i + " : " + cardsLigretto[i]);
+                System.out.println("before : " + players.get(i).getScore());
+                players.get(i).scoreAdd(-2 * cardsLigretto[i]);
+                System.out.println("after : " + players.get(i).getScore());
             }
-            player.setPosition(crtPos);
+            if (indexInput == -1 || indexInput == 1) {
+                System.out.println("center " + i + " : " + cardsCenter[i]);
+                System.out.println("before : " + players.get(i).getScore());
+                players.get(i).scoreAdd(cardsCenter[i]);
+                System.out.println("after : " + players.get(i).getScore());
+            }
+        }
+
+        if (indexInput <= 0) {
+            // update positions
+            Collections.sort(players, Player.PLAYER_COMPARATOR_SCORE);
+            int lastScore = Integer.MAX_VALUE;
+            int lastPos = 1;
+            for (int i = 0; i < players.size(); i++) {
+                Player player = players.get(i);
+                if (player.getScore() == lastScore) {
+                    player.setPosition(lastPos);
+                } else {
+                    lastScore = player.getScore();
+                    lastPos = i + 1;
+                    player.setPosition(lastPos);
+                }
+            }
         }
         resultCode = RESULT_OK;
         finish();
@@ -122,6 +170,14 @@ public class RoundActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    private void next() {
+        Intent i = new Intent(RoundActivity.this, RoundActivity.class);
+        i.putExtra(getString(R.string.extra_game), game);
+        i.putExtra(getString(R.string.extra_players), players);
+        i.putExtra(getString(R.string.extra_index_input), indexInput);
+        startActivityForResult(i, REQUEST_CODE_ROUND);
     }
 
     @Override
@@ -142,8 +198,15 @@ public class RoundActivity extends AppCompatActivity {
             case R.id.action_infos:
                 showInfos();
                 return true;
+            case R.id.action_next:
+                if (checkScoresEntered()) {
+                    next();
+                }
+                return true;
             case R.id.action_done:
-                done();
+                if (checkScoresEntered()) {
+                    done();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -163,23 +226,30 @@ public class RoundActivity extends AppCompatActivity {
     }
 
     private void confirmQuit() {
-        for (int i = 0; i < players.size(); i++) {
-            if (cardsCenter[i] != NIL || cardsLigretto[i] != NIL) {
-                new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.dialog_title_quit_round))
-                        .setMessage(getString(R.string.dialog_quit_round))
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
+        if (!checkNoScoresEntered())
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.dialog_title_quit_round))
+                    .setMessage(getString(R.string.dialog_quit_round))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
 
-                        })
-                        .setNegativeButton(android.R.string.no, null)
-                        .show();
-                return;
-            }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        else
+            finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_ROUND && resultCode == RESULT_OK && indexInput == 0) {
+            players.clear();
+            players.addAll((ArrayList<Player>) data.getSerializableExtra(getString(R.string.extra_players)));
+            done();
         }
-        finish();
     }
 }

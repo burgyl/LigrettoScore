@@ -33,4 +33,9 @@
     <string name="default_game_name">Partie %1$d</string>
     <string name="dialog_infos">\"%1$s\" sont les cartes que vous avez jouées, celles au centre de la table.\n\n\"%2$s\" sont les cartes dans la pile Ligretto, la pile de 10 cartes (sans les 3 additionnelles).</string>
     <string name="dialog_title_color_picker">Choisissez la couleur</string>
+    <string name="about_header">A propos</string>
+    <string name="see_github">Voir le projet sur GitHub</string>
+    <string name="licenses_credits_header">Licenses &amp; Remerciements</string>
+    <string name="see_github_title">Voir le projet sur GitHub</string>
+    <string name="license_colorpicker_description">par Petrov Kristiyan, sous licence Apache 2.0</string>
 </resources>

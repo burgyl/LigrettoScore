@@ -7,10 +7,14 @@
 
     <!-- Settings Titles -->
     <string name="display_header">Display</string>
+    <string name="about_header">About</string>
+    <string name="licenses_credits_header">Licenses &amp; Credits</string>
 
     <!-- Settings keys -->
     <string name="settings_key_theme_9" translatable="false">theme_9</string>
     <string name="settings_key_theme_10" translatable="false">theme_10</string>
+    <string name="settings_key_see_github" translatable="false">github</string>
+    <string name="settings_key_license_colorpicker" translatable="false">license_colorpicker</string>
 
     <!-- Extras -->
     <string name="extra_game" translatable="false">GAME</string>
@@ -19,6 +23,13 @@
     <!-- Display Settings -->
     <string name="theme_title">Theme</string>
     <string name="theme_dialog_title">Choose theme</string>
+
+    <!-- About Settings -->
+    <string name="see_github_title">See the project on GitHub</string>
+
+    <!-- Licenses & Credits Settings -->
+    <string name="license_colorpicker_title" translatable="false">ColorPicker</string>
+    <string name="license_colorpicker_description">by Petrov Kristiyan, licensed under the Apache 2.0 license</string>
 
     <!-- Menus -->
     <string name="infos">Infos</string>
@@ -60,4 +71,5 @@
 
     <!-- Defaults -->
     <string name="default_game_name">Game %1$d</string>
+    <string name="see_github">See the project on GitHub</string>
 </resources>

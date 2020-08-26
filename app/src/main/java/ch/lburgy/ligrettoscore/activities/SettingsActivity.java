@@ -1,6 +1,8 @@
 package ch.lburgy.ligrettoscore.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import ch.lburgy.ligrettoscore.R;
@@ -108,6 +111,24 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             } else {
                 findPreference(keyTheme9).setVisible(true);
             }
+
+            findPreference(getString(R.string.settings_key_see_github)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/burgyl/LigrettoScore"));
+                    startActivity(browserIntent);
+                    return true;
+                }
+            });
+
+            findPreference(getString(R.string.settings_key_license_colorpicker)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kristiyanP/colorpicker"));
+                    startActivity(browserIntent);
+                    return true;
+                }
+            });
         }
     }
 }

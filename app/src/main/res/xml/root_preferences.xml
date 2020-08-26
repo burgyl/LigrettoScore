@@ -9,7 +9,7 @@
             app:dialogTitle="@string/theme_dialog_title"
             app:entries="@array/settings_theme_10_titles"
             app:entryValues="@array/settings_theme_10_values"
-            app:iconSpaceReserved="false"
+            app:icon="@drawable/ic_theme"
             app:isPreferenceVisible="false"
             app:key="@string/settings_key_theme_10"
             app:title="@string/theme_title"
@@ -20,11 +20,34 @@
             app:dialogTitle="@string/theme_dialog_title"
             app:entries="@array/settings_theme_9_titles"
             app:entryValues="@array/settings_theme_9_values"
-            app:iconSpaceReserved="false"
+            app:icon="@drawable/ic_theme"
             app:isPreferenceVisible="false"
             app:key="@string/settings_key_theme_9"
             app:title="@string/theme_title"
             app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/about_header">
+
+        <Preference
+            app:icon="@drawable/ic_github"
+            app:key="@string/settings_key_see_github"
+            app:title="@string/see_github_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/licenses_credits_header">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="@string/settings_key_license_colorpicker"
+            app:title="@string/license_colorpicker_title"
+            app:summary="@string/license_colorpicker_description"/>
 
     </PreferenceCategory>
 

@@ -82,6 +82,7 @@ public class RVAdapterGames extends RecyclerView.Adapter<RVAdapterGames.ViewHold
 
     @Override
     public int getItemCount() {
+        if (games == null) return 0;
         return games.size();
     }
 

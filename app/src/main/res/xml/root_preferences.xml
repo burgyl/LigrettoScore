@@ -47,6 +47,12 @@
             app:key="@string/settings_key_see_github"
             app:title="@string/see_github_title" />
 
+        <Preference
+            app:icon="@drawable/ic_info"
+            app:key="@string/settings_key_developer"
+            app:summary="@string/developer_description"
+            app:title="@string/developer_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

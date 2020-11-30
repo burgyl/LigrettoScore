@@ -126,6 +126,15 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
             });
 
+            findPreference(getString(R.string.settings_key_developer)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:contact@lburgy.ch"));
+                    startActivity(browserIntent);
+                    return true;
+                }
+            });
+
             findPreference(getString(R.string.settings_key_license_colorpicker)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {

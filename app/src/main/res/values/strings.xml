@@ -15,6 +15,7 @@
     <string name="settings_key_theme_10" translatable="false">theme_10</string>
     <string name="settings_key_round_view" translatable="false">round_view</string>
     <string name="settings_key_see_github" translatable="false">github</string>
+    <string name="settings_key_developer" translatable="false">developer</string>
     <string name="settings_key_license_colorpicker" translatable="false">license_colorpicker</string>
 
     <!-- Extras -->
@@ -30,6 +31,8 @@
 
     <!-- About Settings -->
     <string name="see_github_title">See the project on GitHub</string>
+    <string name="developer_title">Developed by Lucas Bürgy</string>
+    <string name="developer_description">Licensed under the GNU GPL v3.0 license</string>
 
     <!-- Licenses & Credits Settings -->
     <string name="license_colorpicker_title" translatable="false">ColorPicker</string>

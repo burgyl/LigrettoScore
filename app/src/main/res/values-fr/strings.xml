@@ -41,4 +41,6 @@
     <string name="round_view_title">Vue de nouvelle manche</string>
     <string name="round_view_dialog_title">Choisissez une vue de manche</string>
     <string name="next_input">Nouvelle entrée</string>
+    <string name="developer_description">Sous license GNU GPL v3.0</string>
+    <string name="developer_title">Développée par Lucas Bürgy</string>
 </resources>

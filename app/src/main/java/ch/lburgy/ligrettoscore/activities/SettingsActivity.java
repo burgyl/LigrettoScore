@@ -125,7 +125,6 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
-
             findPreference(getString(R.string.settings_key_developer)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -134,7 +133,6 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
-
             findPreference(getString(R.string.settings_key_license_colorpicker)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {

@@ -123,19 +123,12 @@ public class RoundActivity extends AppCompatActivity {
 
     private void done() {
         // add scores
-        System.out.println("indexInput: " + indexInput);
         for (int i = 0; i < players.size(); i++) {
             if (indexInput == -1 || indexInput == 0) {
-                System.out.println("ligretto " + i + " : " + cardsLigretto[i]);
-                System.out.println("before : " + players.get(i).getScore());
                 players.get(i).scoreAdd(-2 * cardsLigretto[i]);
-                System.out.println("after : " + players.get(i).getScore());
             }
             if (indexInput == -1 || indexInput == 1) {
-                System.out.println("center " + i + " : " + cardsCenter[i]);
-                System.out.println("before : " + players.get(i).getScore());
                 players.get(i).scoreAdd(cardsCenter[i]);
-                System.out.println("after : " + players.get(i).getScore());
             }
         }
 

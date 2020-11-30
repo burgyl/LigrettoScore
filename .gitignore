@@ -148,3 +148,5 @@ fabric.properties
 
 extras/versions/*
 app/release/*
+
+.idea

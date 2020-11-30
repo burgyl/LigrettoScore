@@ -43,4 +43,6 @@
     <string name="next_input">Nouvelle entrée</string>
     <string name="developer_description">Sous license GNU GPL v3.0</string>
     <string name="developer_title">Développée par Lucas Bürgy</string>
+    <string name="game_header">Jeu</string>
+    <string name="game_points_title">Point nécessaires pour gagner la partie</string>
 </resources>

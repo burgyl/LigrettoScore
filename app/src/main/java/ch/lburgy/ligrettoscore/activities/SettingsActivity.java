@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -28,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     private String keyTheme9;
     private String keyTheme10;
     private String keyRoundView;
+    private String keyGamePoints;
 
     private PrefManager prefManager;
     private SharedPreferences prefs;
@@ -37,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         keyTheme9 = getResources().getString(R.string.settings_key_theme_9);
         keyTheme10 = getResources().getString(R.string.settings_key_theme_10);
         keyRoundView = getResources().getString(R.string.settings_key_round_view);
+        keyGamePoints = getResources().getString(R.string.settings_key_game_points);
 
         prefManager = new PrefManager(this);
 
@@ -50,9 +55,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 .replace(R.id.settings, new SettingsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override
@@ -79,8 +83,11 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             String themeString10 = sharedPreferences.getString(keyTheme10, "MODE_NIGHT_FOLLOW_SYSTEM");
             changeTheme(themeString10);
         } else if (keyRoundView.equals(key)) {
-            String roundViewChoosen = sharedPreferences.getString(keyRoundView, "TOGETHER");
-            prefManager.setRoundViewTogether("TOGETHER".equals(roundViewChoosen));
+            String roundViewChoosen = sharedPreferences.getString(keyRoundView, PrefManager.DEFAULT_ROUND_VIEW_STRING);
+            prefManager.setRoundViewTogether(PrefManager.DEFAULT_ROUND_VIEW_STRING.equals(roundViewChoosen));
+        } else if (keyGamePoints.equals(key)) {
+            int gamePointsChoosen = Integer.parseInt(sharedPreferences.getString(keyGamePoints, null));
+            prefManager.setGamePoints(gamePointsChoosen);
         }
     }
 
@@ -111,11 +118,21 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
             String keyTheme9 = getResources().getString(R.string.settings_key_theme_9);
             String keyTheme10 = getResources().getString(R.string.settings_key_theme_10);
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            String keyGamePoints = getResources().getString(R.string.settings_key_game_points);
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 findPreference(keyTheme10).setVisible(true);
-            } else {
+            else
                 findPreference(keyTheme9).setVisible(true);
-            }
+
+            EditTextPreference preferenceGamePoints = findPreference(keyGamePoints);
+            preferenceGamePoints.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                @Override
+                public void onBindEditText(@NonNull EditText editText) {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    editText.selectAll();
+                }
+            });
 
             findPreference(getString(R.string.settings_key_see_github)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

@@ -66,6 +66,7 @@ public class RVAdapterPlayersRound extends RecyclerView.Adapter<RVAdapterPlayers
             if (indexInput == -1 || indexInput == 0) {
                 ExtendedEditText inputCardsLigretto = layoutInputs.getChildAt(0).findViewById(R.id.input);
                 inputCardsLigretto.clearTextChangedListeners();
+                inputCardsLigretto.setSelectAllOnFocus(true);
 
                 if (cardsLigretto[position] != NIL)
                     inputCardsLigretto.setText(String.format("%d", cardsLigretto[position]));

@@ -6,6 +6,7 @@
     <string name="activity_round">New round - %1$s</string>
 
     <!-- Settings Titles -->
+    <string name="game_header">Game</string>
     <string name="display_header">Display</string>
     <string name="about_header">About</string>
     <string name="licenses_credits_header">Licenses &amp; Credits</string>
@@ -14,6 +15,7 @@
     <string name="settings_key_theme_9" translatable="false">theme_9</string>
     <string name="settings_key_theme_10" translatable="false">theme_10</string>
     <string name="settings_key_round_view" translatable="false">round_view</string>
+    <string name="settings_key_game_points" translatable="false">game_points</string>
     <string name="settings_key_see_github" translatable="false">github</string>
     <string name="settings_key_developer" translatable="false">developer</string>
     <string name="settings_key_license_colorpicker" translatable="false">license_colorpicker</string>
@@ -28,6 +30,9 @@
     <string name="theme_dialog_title">Choose theme</string>
     <string name="round_view_title">New round view</string>
     <string name="round_view_dialog_title">Choose the round view</string>
+
+    <!-- Game Settings -->
+    <string name="game_points_title">Points needed to win the game</string>
 
     <!-- About Settings -->
     <string name="see_github_title">See the project on GitHub</string>

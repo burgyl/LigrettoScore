@@ -40,6 +40,21 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:title="@string/game_header">
+
+        <EditTextPreference
+            app:adjustable="true"
+            app:defaultValue="100"
+            app:icon="@drawable/ic_trophy"
+            app:key="@string/settings_key_game_points"
+            app:showSeekBarValue="true"
+            app:title="@string/game_points_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="@string/about_header">
 
         <Preference

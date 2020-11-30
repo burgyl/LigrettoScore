@@ -29,6 +29,7 @@ import ch.lburgy.ligrettoscore.database.GameDao;
 import ch.lburgy.ligrettoscore.database.MyDatabase;
 import ch.lburgy.ligrettoscore.database.Player;
 import ch.lburgy.ligrettoscore.database.PlayerDao;
+import ch.lburgy.ligrettoscore.preferences.PrefManager;
 import ch.lburgy.ligrettoscore.ui.RVAdapterPlayersScore;
 
 public class ScoreboardActivity extends AppCompatActivity {
@@ -36,8 +37,8 @@ public class ScoreboardActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ROUND = 0;
     private static final String KEY_SAVED_GAME = "game";
     private static final String KEY_SAVED_PLAYERS = "players";
-    private static final int SCORE_TO_WIN = 99;
 
+    private PrefManager prefManager;
     private Game game;
     private ArrayList<Player> players;
     private RVAdapterPlayersScore rvAdapterPlayersScore;
@@ -55,6 +56,8 @@ public class ScoreboardActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        prefManager = new PrefManager(this);
 
         FloatingActionButton fabNextRound = findViewById(R.id.fab_next_round);
         fabNextRound.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +137,7 @@ public class ScoreboardActivity extends AppCompatActivity {
                     playerDao.updatePlayers(players);
                 }
             }).start();
-            if (players.get(0).getScore() >= SCORE_TO_WIN) {
+            if (players.get(0).getScore() >= prefManager.getGamePoints()) {
                 new AlertDialog.Builder(this)
                         .setTitle(getString(R.string.dialog_title_player_won, players.get(0).getName()))
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

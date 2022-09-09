@@ -26,12 +26,15 @@ import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
+import java.util.Objects;
+
 public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private String keyTheme9;
     private String keyTheme10;
     private String keyRoundView;
     private String keyGamePoints;
+    private String keyTurns;
 
     private PrefManager prefManager;
     private SharedPreferences prefs;
@@ -42,6 +45,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         keyTheme10 = getResources().getString(R.string.settings_key_theme_10);
         keyRoundView = getResources().getString(R.string.settings_key_round_view);
         keyGamePoints = getResources().getString(R.string.settings_key_game_points);
+        keyTurns = getResources().getString(R.string.settings_key_turns);
 
         prefManager = new PrefManager(this);
 
@@ -88,6 +92,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         } else if (keyGamePoints.equals(key)) {
             int gamePointsChoosen = Integer.parseInt(sharedPreferences.getString(keyGamePoints, null));
             prefManager.setGamePoints(gamePointsChoosen);
+        } else if (keyTurns.equals(key)) {
+            int turnsChoosen = Integer.parseInt(sharedPreferences.getString(keyTurns, null));
+            prefManager.setGameTurns(turnsChoosen);
         }
     }
 
@@ -119,13 +126,15 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             String keyTheme9 = getResources().getString(R.string.settings_key_theme_9);
             String keyTheme10 = getResources().getString(R.string.settings_key_theme_10);
             String keyGamePoints = getResources().getString(R.string.settings_key_game_points);
+            String keyTurns = getResources().getString(R.string.settings_key_turns);
 
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                findPreference(keyTheme10).setVisible(true);
+                Objects.requireNonNull(findPreference(keyTheme10)).setVisible(true);
             else
-                findPreference(keyTheme9).setVisible(true);
+                Objects.requireNonNull(findPreference(keyTheme9)).setVisible(true);
 
             EditTextPreference preferenceGamePoints = findPreference(keyGamePoints);
+            assert preferenceGamePoints != null;
             preferenceGamePoints.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
                 @Override
                 public void onBindEditText(@NonNull EditText editText) {
@@ -134,7 +143,17 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
             });
 
-            findPreference(getString(R.string.settings_key_see_github)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            EditTextPreference preferenceTurns = findPreference(keyTurns);
+            assert preferenceTurns != null;
+            preferenceTurns.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                @Override
+                public void onBindEditText(@NonNull EditText editText) {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    editText.selectAll();
+                }
+            });
+
+            Objects.requireNonNull(findPreference(getString(R.string.settings_key_see_github))).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/burgyl/LigrettoScore"));
@@ -142,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     return true;
                 }
             });
-            findPreference(getString(R.string.settings_key_developer)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Objects.requireNonNull(findPreference(getString(R.string.settings_key_developer))).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:contact@lburgy.ch"));

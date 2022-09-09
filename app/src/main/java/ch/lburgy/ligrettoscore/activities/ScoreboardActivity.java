@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Objects;
 
 import ch.lburgy.ligrettoscore.R;
 import ch.lburgy.ligrettoscore.database.Game;
@@ -92,7 +95,17 @@ public class ScoreboardActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        setTitle(getString(R.string.activity_scoreboard, game.getName()));
+        boolean gm = game.getGamemode();
+        String display = "";
+        if(!gm){
+            display = "Point mode";
+        }
+        else{
+            display = "Turn mode";
+        }
+
+        setTitle(getString(R.string.activity_scoreboard, display));
+
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_players);
         recyclerView.setHasFixedSize(true);
@@ -104,13 +117,11 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -120,14 +131,17 @@ public class ScoreboardActivity extends AppCompatActivity {
         savedInstanceState.putSerializable(KEY_SAVED_PLAYERS, players);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ROUND && resultCode == RESULT_OK) {
+            assert data != null;
             game = (Game) data.getSerializableExtra(getString(R.string.extra_game));
+            assert game != null;
             game.setLastEdit(new Date());
             players.clear();
-            players.addAll((ArrayList<Player>) data.getSerializableExtra(getString(R.string.extra_players)));
+            players.addAll((ArrayList<Player>) Objects.requireNonNull(data.getSerializableExtra(getString(R.string.extra_players))));
             Collections.sort(players, Player.PLAYER_COMPARATOR_SCORE);
             rvAdapterPlayersScore.notifyDataSetChanged();
             new Thread(new Runnable() {
@@ -137,16 +151,37 @@ public class ScoreboardActivity extends AppCompatActivity {
                     playerDao.updatePlayers(players);
                 }
             }).start();
-            if (players.get(0).getScore() >= prefManager.getGamePoints()) {
-                new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.dialog_title_player_won, players.get(0).getName()))
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //
-                            }
-                        })
-                        .show();
+            PrefManager.setActualTurn(PrefManager.getActualTurn() + 1);
+            if(!game.getGamemode()){
+                // POINT MODE
+
+                if (players.get(0).getScore() >= prefManager.getGamePoints()) {
+                    new AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.dialog_title_player_won, players.get(0).getName()))
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //
+                                }
+                            })
+                            .show();
+                }
+            }
+            else{
+                // TURN MODE
+                Toast.makeText(this,  getString(R.string.toast_turn) + " " + PrefManager.getActualTurn() + " / " + prefManager.getGameTurns(), Toast.LENGTH_SHORT).show();
+                if (PrefManager.getActualTurn() >= prefManager.getGameTurns()) {
+                    new AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.dialog_title_player_won, players.get(0).getName()))
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //
+                                }
+                            })
+                            .show();
+                    PrefManager.setActualTurn(0);
+                }
             }
         }
     }

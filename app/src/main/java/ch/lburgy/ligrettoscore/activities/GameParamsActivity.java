@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
     private static final String KEY_SAVED_CHANGES_MADE = "changes_made";
     private static final String KEY_SAVED_GAME_NAME = "game_name";
     private static final String KEY_SAVED_PLAYERS = "players";
+    private static final String KEY_SAVED_GAME = "game";
 
     private ArrayList<Player> players;
     private RVAdapterPlayersGameParams rvAdapterPlayersGameParams;
@@ -55,6 +58,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
     private PlayerDao playerDao;
     private Game game;
     private int resultCode = RESULT_CANCELED;
+    private boolean game_mode = false; // false is point, true is turn
     private int colorChoosen;
     private boolean changesMade;
 
@@ -102,6 +106,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
         colorsTaken = new boolean[colors.length];
 
         FloatingActionButton fabAddPlayer = findViewById(R.id.fab_add_player);
+        editGameMode();
         fabAddPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +119,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
         });
 
         setupUI(findViewById(R.id.content_root));
+
     }
 
     private void initView() {
@@ -129,6 +135,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
         // Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
                 public boolean onTouch(View v, MotionEvent event) {
                     looseFocus();
                     return false;
@@ -152,6 +159,69 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
                 this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         this.getCurrentFocus().clearFocus();
+    }
+
+    private void editGameMode(){
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_edit_game_mode, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button button_point_mode = dialogView.findViewById(R.id.button_point_mode);
+        final Button button_turn_mode = dialogView.findViewById(R.id.button_turn_mode);
+        button_point_mode.setBackgroundResource(R.color.colorPrimary);
+        button_turn_mode.setBackgroundResource(R.color.ligretto_blue_dark_grey);
+
+
+        dialogBuilder.setTitle(getString(R.string.game_mode_dialog_title));
+        dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                if (button_point_mode.isSelected()) {
+                    game_mode = false;
+                }
+                if (button_turn_mode.isSelected()) {
+                    game_mode = true;
+                }
+            }
+        });
+        dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+
+
+        button_point_mode.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                button_point_mode.setBackgroundResource(R.color.colorPrimary);
+                button_point_mode.setSelected(true);
+                button_turn_mode.setBackgroundResource(R.color.ligretto_blue_dark_grey);
+                button_turn_mode.setSelected(false);
+
+            }
+        });
+
+        button_turn_mode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button_point_mode.setBackgroundResource(R.color.ligretto_blue_dark_grey);
+                button_point_mode.setSelected(false);
+                button_turn_mode.setBackgroundResource(R.color.colorPrimary);
+                button_turn_mode.setSelected(true);
+            }
+        });
+
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+
+
+
+
     }
 
     private void editPlayer(int position) {
@@ -195,6 +265,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
 
         dialogBuilder.setTitle(getString(R.string.add_player_dialog_title));
         dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             public void onClick(DialogInterface dialog, int whichButton) {
                 String playerName = txtPlayerName.getText().toString();
                 if (!"".equals(playerName)) {
@@ -261,6 +332,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
         super.finish();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -287,7 +359,7 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
         new Thread(new Runnable() {
             @Override
             public void run() {
-                game = new Game(txtGameName.getText().toString(), new Date(), players.size());
+                game = new Game(txtGameName.getText().toString(), new Date(), players.size(), game_mode);
                 long gameID = gameDao.insertGame(game);
                 game.setId(gameID);
                 for (Player player : players)
@@ -308,9 +380,12 @@ public class GameParamsActivity extends AppCompatActivity implements RVAdapterPl
     @Override
     public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        game.setGamemode(game_mode);
         savedInstanceState.putBoolean(KEY_SAVED_CHANGES_MADE, changesMade);
         savedInstanceState.putString(KEY_SAVED_GAME_NAME, txtGameName.getText().toString());
         savedInstanceState.putSerializable(KEY_SAVED_PLAYERS, players);
+        savedInstanceState.putSerializable(KEY_SAVED_GAME, game);
+        savedInstanceState.putString(KEY_SAVED_GAME_NAME, txtGameName.getText().toString());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.ui;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,12 +24,12 @@ public class RVAdapterPlayersRound extends RecyclerView.Adapter<RVAdapterPlayers
     private static final int NIL = -1;
 
     private final ArrayList<Player> players;
-    private int[] cardsLigretto;
-    private int[] cardsCenter;
-    private int indexInput;
+    private final int[] cardsLigretto;
+    private final int[] cardsCenter;
+    private final int indexInput;
 
     private LayoutInflater inflater;
-    private Resources resources;
+    private final Resources resources;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView txtPlayerName;
@@ -42,6 +43,7 @@ public class RVAdapterPlayersRound extends RecyclerView.Adapter<RVAdapterPlayers
             cell = v.findViewById(R.id.player_cell);
         }
 
+        @SuppressLint("DefaultLocale")
         public void bind(Resources resources, LayoutInflater inflater, final ArrayList<Player> players, final int[] cardsLigretto, final int[] cardsCenter, final int indexInput, final int position) {
             final Player player = players.get(position);
             txtPlayerName.setText(player.getName());

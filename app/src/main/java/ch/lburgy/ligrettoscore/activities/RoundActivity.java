@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import ch.lburgy.ligrettoscore.R;
 import ch.lburgy.ligrettoscore.database.Game;
@@ -56,7 +58,7 @@ public class RoundActivity extends AppCompatActivity {
         String extraIndexInput = getString(R.string.extra_index_input);
         indexInput = getIntent().getIntExtra(extraIndexInput, -1);
         PrefManager prefManager = new PrefManager(this);
-        if (!prefManager.isRoundViewTogether()) indexInput++;
+        if (!prefManager.getRoundViewTogether()) indexInput++;
 
         if (savedInstanceState == null) {
             String extraGame = getString(R.string.extra_game);
@@ -104,18 +106,49 @@ public class RoundActivity extends AppCompatActivity {
 
     private boolean checkScoresEntered() {
         // check all scores have been added
-        for (int i = 0; i < players.size(); i++)
+        boolean goodScore = true;
+        int countNumberOfPlayersWhoDontHaveCardsInLigretto = 0;
+        for (int i = 0; i < players.size(); i++) {
             if (((indexInput == -1 || indexInput == 0) && cardsLigretto[i] == NIL) || ((indexInput == -1 || indexInput == 1) && cardsCenter[i] == NIL)) {
                 Toast.makeText(this, getString(R.string.error_enter_all_fields), Toast.LENGTH_SHORT).show();
-                return false;
+                goodScore = false;
             }
-        return true;
+            else if(cardsLigretto[i] > 10 && cardsLigretto[i] != NIL){
+                Toast.makeText(this, getString(R.string.error_enter_too_much_ligretto), Toast.LENGTH_SHORT).show();
+                goodScore = false;
+            }
+            else if(cardsLigretto[i] < 0 && cardsLigretto[i] != NIL){
+                Toast.makeText(this, getString(R.string.error_enter_not_enough_ligretto), Toast.LENGTH_SHORT).show();
+                goodScore = false;
+            }
+            else if(cardsCenter[i] < 0 && cardsCenter[i] != NIL){
+                Toast.makeText(this, getString(R.string.error_enter_not_enough_cardsCenter), Toast.LENGTH_SHORT).show();
+                goodScore = false;
+            }
+            else if(cardsCenter[i] > 40 - 3 && cardsCenter[i] != NIL){ // 40 cards in Ligretto game - 3 cards front of you
+                Toast.makeText(this, getString(R.string.error_enter_too_much_cardsCenter), Toast.LENGTH_SHORT).show();
+                goodScore = false;
+            }
+            else if(cardsLigretto[i] == 0) {
+                countNumberOfPlayersWhoDontHaveCardsInLigretto++;
+            }
+        }
+        if(countNumberOfPlayersWhoDontHaveCardsInLigretto == 0) {
+            Toast.makeText(this, getString(R.string.error_no_player_dont_have_cards_in_ligretto), Toast.LENGTH_SHORT).show();
+            goodScore = false;
+        }
+        else if(countNumberOfPlayersWhoDontHaveCardsInLigretto > 1) {
+            Toast.makeText(this, getString(R.string.error_too_many_players_dont_have_cards_in_ligretto), Toast.LENGTH_SHORT).show();
+            goodScore = false;
+        }
+        return goodScore;
     }
 
     private boolean checkNoScoresEntered() {
         // check none of the scores have been added
         for (int i = 0; i < players.size(); i++)
             if (((indexInput == -1 || indexInput == 0) && cardsLigretto[i] != NIL) || ((indexInput == -1 || indexInput == 1) && cardsCenter[i] != NIL)) {
+                Toast.makeText(this, getString(R.string.error_enter_all_fields), Toast.LENGTH_SHORT).show();
                 return false;
             }
         return true;
@@ -182,6 +215,7 @@ public class RoundActivity extends AppCompatActivity {
         super.finish();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -241,7 +275,7 @@ public class RoundActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ROUND && resultCode == RESULT_OK && indexInput == 0) {
             players.clear();
-            players.addAll((ArrayList<Player>) data.getSerializableExtra(getString(R.string.extra_players)));
+            players.addAll((ArrayList<Player>) Objects.requireNonNull(data.getSerializableExtra(getString(R.string.extra_players))));
             done();
         }
     }

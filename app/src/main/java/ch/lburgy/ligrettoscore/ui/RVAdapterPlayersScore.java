@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.ui;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class RVAdapterPlayersScore extends RecyclerView.Adapter<RVAdapterPlayers
             cell = v.findViewById(R.id.player_cell);
         }
 
+        @SuppressLint("DefaultLocale")
         public void bind(final ArrayList<Player> players, final int position) {
             final Player player = players.get(position);
             txtPlayerPosition.setText(String.format("%d.", player.getPosition()));

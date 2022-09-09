@@ -2,7 +2,7 @@
 <resources>
     <string name="activity_settings">Paramètres</string>
     <string name="activity_game_params">Paramètres de jeu</string>
-    <string name="activity_scoreboard">Tableau de scores - %1$s</string>
+    <string name="activity_scoreboard">Scores - %1$s</string>
     <string name="activity_round">Nouvelle manche - %1$s</string>
     <string name="display_header">Apparence</string>
     <string name="theme_title">Thème</string>
@@ -43,6 +43,20 @@
     <string name="next_input">Prochaine entrée</string>
     <string name="developer_description">Sous license GNU GPL v3.0</string>
     <string name="developer_title">Développée par Lucas Bürgy</string>
-    <string name="game_header">Jeu</string>
+    <string name="game_header">Paramètres des modes de jeu</string>
     <string name="game_points_title">Point nécessaires pour gagner la partie</string>
+    <string name="game_mode_header">Mode de jeu</string>
+    <string name="title_points_mode">Mode points</string>
+    <string name="title_round_mode">Mode tours</string>
+    <string name="game_turns_title">Nombre de tours</string>
+    <string name="error_enter_too_much_ligretto">Vous avez trop de cartes dans le champ Ligretto</string>
+    <string name="error_enter_not_enough_ligretto">Vous n avez pas assez de cartes dans le champ Ligretto</string>
+    <string name="error_enter_not_enough_cardsCenter">Vous n avez pas assez de cartes dans le champ Centre</string>
+    <string name="error_enter_too_much_cardsCenter">Vous avez trop de cartes dans le champ Centre</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Aucun joueur ne possède pas de cartes dans le champ Ligretto</string>
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Trop de joueurs ne possèdent pas de carte dans le champ Ligretto</string>
+    <string name="dialog_point_mode">Mode point</string>
+    <string name="dialog_turn_mode">Mode tour</string>
+    <string name="game_mode_dialog_title">Choisissez un mode de jeu</string>
+    <string name="toast_turn">Tour</string>
 </resources>

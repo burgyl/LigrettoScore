@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
@@ -50,6 +51,14 @@
             app:showSeekBarValue="true"
             app:title="@string/game_points_title"
             app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:adjustable="true"
+            app:defaultValue="10"
+            app:icon="@drawable/ic_turn"
+            app:key="@string/settings_key_turns"
+            app:showSeekBarValue="true"
+            app:title="@string/game_turns_title"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
@@ -75,6 +84,7 @@
         app:title="@string/licenses_credits_header">
 
         <Preference
+            app:icon="@drawable/ic_colorpicker"
             app:iconSpaceReserved="false"
             app:key="@string/settings_key_license_colorpicker"
             app:summary="@string/license_colorpicker_description"

@@ -17,12 +17,23 @@ public class Game implements Serializable {
     private long id;
     private String name;
     private Date lastEdit;
-    private int nbPlayers;
+    private final int nbPlayers;
 
-    public Game(String name, Date lastEdit, int nbPlayers) {
+    public boolean getGamemode() {
+        return gamemode;
+    }
+
+    public void setGamemode(boolean gamemode) {
+        this.gamemode = gamemode;
+    }
+
+    private boolean gamemode;
+
+    public Game(String name, Date lastEdit, int nbPlayers, boolean gamemode) {
         this.name = name;
         this.lastEdit = lastEdit;
         this.nbPlayers = nbPlayers;
+        this.gamemode = gamemode;
     }
 
     public long getId() {
@@ -53,9 +64,6 @@ public class Game implements Serializable {
         this.lastEdit = lastEdit;
     }
 
-    public void setNbPlayers(int nbPlayers) {
-        this.nbPlayers = nbPlayers;
-    }
 
     public static final Comparator<Game> GAME_COMPARATOR = new Comparator<Game>() {
         @Override

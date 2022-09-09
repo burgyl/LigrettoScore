@@ -6,7 +6,7 @@
     <string name="activity_round">New round - %1$s</string>
 
     <!-- Settings Titles -->
-    <string name="game_header">Game</string>
+    <string name="game_header">Game mode settings</string>
     <string name="display_header">Display</string>
     <string name="about_header">About</string>
     <string name="licenses_credits_header">Licenses &amp; Credits</string>
@@ -16,6 +16,7 @@
     <string name="settings_key_theme_10" translatable="false">theme_10</string>
     <string name="settings_key_round_view" translatable="false">round_view</string>
     <string name="settings_key_game_points" translatable="false">game_points</string>
+    <string name="settings_key_turns" translatable="false">turns</string>
     <string name="settings_key_see_github" translatable="false">github</string>
     <string name="settings_key_developer" translatable="false">developer</string>
     <string name="settings_key_license_colorpicker" translatable="false">license_colorpicker</string>
@@ -33,6 +34,7 @@
 
     <!-- Game Settings -->
     <string name="game_points_title">Points needed to win the game</string>
+    <string name="game_turns_title">Number of turns</string>
 
     <!-- About Settings -->
     <string name="see_github_title">See the project on GitHub</string>
@@ -65,9 +67,12 @@
     <string name="dialog_title_quit_game_params">Quit</string>
     <string name="dialog_quit_game_params">Are you sure you want to quit this screen ? All your changes will be lost.</string>
     <string name="dialog_title_color_picker">Choose the color</string>
+    <string name="dialog_point_mode">Point mode</string>
+    <string name="dialog_turn_mode">Turn mode</string>
 
     <!-- Game params -->
     <string name="add_player_dialog_title">Add a player</string>
+    <string name="game_mode_dialog_title">Choose a game mode</string>
     <string name="title_players">Players :</string>
     <string name="title_game">Game :</string>
 
@@ -80,8 +85,22 @@
     <string name="error_not_enough_players">You need to be at least two players to start a game</string>
     <string name="error_max_players">You can have maximum %1$d players</string>
     <string name="error_enter_all_fields">You have to fill all the fields</string>
+    <string name="error_enter_too_much_ligretto">You have too much cards in Ligretto field</string>
+    <string name="error_enter_not_enough_ligretto">You have not enough cards in Ligretto field</string>
+    <string name="error_enter_not_enough_cardsCenter">You have not enough cards in Center field</string>
+    <string name="error_enter_too_much_cardsCenter">You have too much cards in Center field</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Nobody don\'t have cards in Ligretto field</string>
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Too many players don\'t have cards in Ligretto field</string>
 
     <!-- Defaults -->
     <string name="default_game_name">Game %1$d</string>
     <string name="see_github">See the project on GitHub</string>
+
+    <!-- Game mode -->
+    <string name="game_mode_header">Game mode</string>
+    <string name="title_points_mode">Points mode</string>
+    <string name="title_round_mode">Turns mode</string>
+
+    <!-- Toasts -->
+    <string name="toast_turn">Turn</string>
 </resources>

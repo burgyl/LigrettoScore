@@ -14,7 +14,7 @@
     <string name="activity_settings">Instellingen</string>
     <string name="about_header">Over</string>
     <string name="display_header">Uiterlijk</string>
-    <string name="game_header">Spel</string>
+    <string name="game_header">Spelmodus instellingen</string>
     <string name="dialog_title_quit_round">Stop</string>
     <string name="dialog_title_quit_game_params">Stop</string>
     <string name="done">Gedaan</string>
@@ -45,4 +45,18 @@
     <string name="dialog_quit_round">Weet u zeker dat u dit scherm wilt verlaten? Al uw wijzigingen gaan dan verloren.</string>
     <string name="dialog_quit_game_params">Weet u zeker dat u dit scherm wilt verlaten? Al uw wijzigingen gaan dan verloren.</string>
     <string name="dialog_infos">"\"%1$s\" zijn de kaarten die in de Ligretto-stapel zitten, de stapel van 10 kaarten (zonder de 3 extra kaarten).\n\n\"%2$s\" zijn de kaarten die u hebt gespeeld, de kaarten in het midden van de tafel. "</string>
+    <string name="game_mode_header">Spelmodus</string>
+    <string name="title_points_mode">Puntenmodus</string>
+    <string name="title_round_mode">Torenmodus</string>
+    <string name="game_turns_title">Aantal bochten</string>
+    <string name="error_enter_too_much_ligretto">Je hebt te veel kaarten in Ligretto veld</string>
+    <string name="error_enter_not_enough_ligretto">Je hebt niet genoeg kaarten in Ligretto veld</string>
+    <string name="error_enter_not_enough_cardsCenter">Je hebt niet genoeg kaarten in Center veld</string>
+    <string name="error_enter_too_much_cardsCenter">Je hebt te veel kaarten in Center veld</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Geen enkele speler heeft kaarten in het veld</string>
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Te veel spelers hebben geen kaart in het Ligretto-veld</string>
+    <string name="dialog_point_mode">Puntenmodus</string>
+    <string name="dialog_turn_mode">Torenmodus</string>
+    <string name="game_mode_dialog_title">Kies een spelmodus</string>
+    <string name="toast_turn">Omloop</string>
 </resources>

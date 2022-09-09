@@ -16,7 +16,7 @@
     <string name="see_github_title">Siehe das Projekt auf GitHub</string>
     <string name="see_github">Siehe das Projekt auf GitHub</string>
     <string name="activity_settings">Einstellungen</string>
-    <string name="game_header">Spiel</string>
+    <string name="game_header">Einstellungen der Spielmodi</string>
     <string name="dialog_title_quit_round">Beenden</string>
     <string name="dialog_title_quit_game_params">Beenden</string>
     <string name="done">Fertig</string>
@@ -45,4 +45,18 @@
     <string name="error_game_name">Sie müssen einen Spielnamen setzen</string>
     <string name="error_enter_all_fields">Sie müssen alle Felder ausfüllen.Sie müssen alle Felder ausfüllen</string>
     <string name="error_not_enough_players">Sie müssen mindestens zwei Spieler sein, um ein Spiel zu beginnen</string>
+    <string name="game_mode_header">Spiel-Modus</string>
+    <string name="title_points_mode">Punkte-Modus</string>
+    <string name="title_round_mode">Turns-Modus</string>
+    <string name="game_turns_title">Anzahl der Umdrehungen</string>
+    <string name="error_enter_too_much_ligretto">Sie haben zu viele Karten im Ligretto-Feld</string>
+    <string name="error_enter_not_enough_ligretto">Sie haben nicht genug Karten im Ligretto-Feld</string>
+    <string name="error_enter_not_enough_cardsCenter">Sie haben zu wenig Karten im Feld Mitte</string>
+    <string name="error_enter_too_much_cardsCenter">Sie haben zu viele Karten im Feld Mitte</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Kein Spieler hat keine Karten im Ligrettofeld</string>.
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Zu viele Spieler besitzen keine Karten im Ligrettofeld</string>.
+    <string name="dialog_point_mode">Punkt-Modus</string>
+    <string name="dialog_turn_mode">Turn-Modus</string>
+    <string name="game_mode_dialog_title">Wählen Sie einen Spielmodus</string>
+    <string name="toast_turn">Runde</string>
 </resources>

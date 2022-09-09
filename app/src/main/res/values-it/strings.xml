@@ -16,12 +16,12 @@
     <string name="see_github_title">Vedi il progetto su GitHub</string>
     <string name="activity_settings">Impostazioni</string>
     <string name="infos">Informazioni</string>
-    <string name="game_header">Gioco</string>
+    <string name="game_header">Impostazioni delle modalità di gioco</string>
     <string name="dialog_title_quit_round">Abbandona</string>
     <string name="dialog_title_quit_game_params">Abbandona</string>
     <string name="done">Finitto</string>
     <string name="activity_game_params">Impostazioni di gioco</string>
-    <string name="activity_scoreboard">Quadro di valutazione - %1$s</string>
+    <string name="activity_scoreboard">Valutazione - %1$s</string>
     <string name="activity_round">Nuovo round - %1$s</string>
     <string name="round_view_title">Vista del nuovo round</string>
     <string name="round_view_dialog_title">Scelga la vista del nuovo round</string>
@@ -45,4 +45,18 @@
     <string name="error_enter_all_fields">Deve compilare tutti i campiDeve compilare tutti i campi</string>
     <string name="game_points_title">Punti necessari per vincere la partita</string>
     <string name="dialog_infos">\"%1$s\" sono le carte del mazzo Ligretto, il mazzo da 10 carte (senza le 3 carte aggiuntive).\n\n\"%2$s\" sono le carte che ha giocato, quelle al centro del tavolo.</string>
+    <string name="game_mode_header">Modalità di gioco</string>
+    <string name="title_points_mode">Modalità punti</string>
+    <string name="title_round_mode">Modalità turni</string>
+    <string name="game_turns_title">Numero di giri</string>
+    <string name="error_enter_too_much_ligretto">Hai troppe carte nel campo Ligretto</string>
+    <string name="error_enter_not_enough_ligretto">Non hai abbastanza carte nel campo Ligretto</string>
+    <string name="error_enter_not_enough_cardsCenter">Non hai abbastanza carte nel campo Center</string>
+    <string name="error_enter_too_much_cardsCenter">Hai troppe carte nel campo Center</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Nessun giocatore ha carte nel campo di Ligretto</string>
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Troppi giocatori non hanno carte nel campo di Ligretto</string>
+    <string name="dialog_point_mode">Modalità punto</string>
+    <string name="dialog_turn_mode">Modalità a turni</string>
+    <string name="game_mode_dialog_title">Scegliere una modalità di gioco</string>
+    <string name="toast_turn">Giro</string>
 </resources>

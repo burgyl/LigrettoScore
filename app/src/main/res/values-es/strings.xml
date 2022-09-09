@@ -9,7 +9,7 @@
     <string name="theme_dialog_title">Elija un tema</string>
     <string name="display_header">Apariencia</string>
     <string name="about_header">Sobre</string>
-    <string name="game_header">Juego</string>
+    <string name="game_header">Ajustes de los modos de juego</string>
     <string name="dialog_title_quit_game_params">Deja</string>
     <string name="dialog_title_quit_round">Deja</string>
     <string name="see_github_title">Vea el proyecto en GitHub</string>
@@ -45,4 +45,18 @@
     <string name="error_game_name">Tienes que establecer un nombre de juego</string>
     <string name="error_enter_all_fields">Tienes que rellenar todos los campos</string>
     <string name="error_max_players">Puedes tener un máximo de jugadores de %1$d</string>
+    <string name="game_mode_header">Modo de juego</string>
+    <string name="title_points_mode">Modo de puntos</string>
+    <string name="title_round_mode">Modo turnos</string>
+    <string name="game_turns_title">Número de vueltas</string>
+    <string name="error_enter_too_much_ligretto">Tienes demasiadas cartas en el campo Ligretto</string>
+    <string name="error_enter_not_enough_ligretto">No tienes suficientes cartas en el campo Ligretto</string>
+    <string name="error_enter_not_enough_cardsCenter">No tienes suficientes cartas en el campo Centro</string>
+    <string name="error_enter_too_much_cardsCenter">Tienes demasiadas cartas en el campo Centro</string>
+    <string name="error_no_player_dont_have_cards_in_ligretto">Ningún jugador tiene cartas en el campo Ligretto</string>
+    <string name="error_too_many_players_dont_have_cards_in_ligretto">Demasiados jugadores no tienen cartas en el campo Ligretto</string>
+    <string name="dialog_point_mode">Modo de punto</string>
+    <string name="dialog_turn_mode">Modo por turnos</string>
+    <string name="game_mode_dialog_title">Elige un modo de juego</string>
+    <string name="toast_turn">Vuelta</string>
 </resources>

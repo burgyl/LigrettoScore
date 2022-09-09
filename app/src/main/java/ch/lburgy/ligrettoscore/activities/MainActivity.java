@@ -1,5 +1,6 @@
 package ch.lburgy.ligrettoscore.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -111,16 +112,21 @@ public class MainActivity extends AppCompatActivity implements RVAdapterGames.On
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_GAME_PARAMS && resultCode == RESULT_OK) {
             Intent i = new Intent(this, ScoreboardActivity.class);
             String extraGame = getString(R.string.extra_game);
+            assert data != null;
             Game newGame = (Game) data.getSerializableExtra(getString(R.string.extra_game));
             i.putExtra(extraGame, newGame);
             startActivityForResult(i, REQUEST_CODE_SCOREBOARD);
-            games.add(newGame);
+            if(games != null) {
+                games.add(newGame);
+            }
+            assert games != null;
             Collections.sort(games, Game.GAME_COMPARATOR);
             rvAdapterGames.notifyDataSetChanged();
         } else if (requestCode == REQUEST_CODE_SCOREBOARD) {
@@ -169,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements RVAdapterGames.On
                 .setTitle(getString(R.string.dialog_title_delete_game))
                 .setMessage(getString(R.string.dialog_delete_game, game.getName()))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         games.remove(game);
